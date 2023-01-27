@@ -1,0 +1,32 @@
+version: "0.1"
+services:
+  proxy:
+    image: traefik:latest
+    command:
+      {}
+    labels:
+      {}
+    volumes:
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+  cache:
+    image: redis:latest
+    ports:
+      - target: 6379
+        published: 6379
+        protocol: tcp
+        mode: host
+  db:
+    image: mongo:latest
+    ports:
+      - target: 27017
+        published: 27017
+        protocol: tcp
+        mode: host
