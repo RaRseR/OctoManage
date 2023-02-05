@@ -27,14 +27,16 @@ export default function Projects() {
     return (
         <section className="w-full h-screen px-3 pb-3 flex flex-col overflow-hidden">
             <Menu>
-                <button className="rounded-md p-1 border border-white hover:bg-neutral-900">
+                <input type="text" className="bg-neutral-900 px-2 rounded-md border border-neutral-500 h-full" />
+                <input type="text" className="bg-neutral-900 px-2 rounded-md border border-neutral-500 h-full ml-2" />
+                <button className="rounded-md p-1 border border-white hover:bg-neutral-900 ml-auto">
                     <PlusIcon className={`w-6 h-6`} />
                 </button>
                 <button
                     onClick={() => {
                         setDisplayType(!displayType);
                     }}
-                    className="rounded-md p-1 border border-white hover:bg-neutral-900"
+                    className="rounded-md p-1 border border-white hover:bg-neutral-900 ml-2"
                 >
                     <Bars3Icon
                         className={`${displayType ? "rotate-90 " : ""
@@ -42,42 +44,53 @@ export default function Projects() {
                     />
                 </button>
             </Menu>
-            {/* <div className={`w-full h-full scrollbar `}>
-                <div className={`w-max h-max py-3 flex ${displayType
-                    ? "flex-row overflow-x-scroll "
-                    : "flex-col overflow-y-scroll "
-                    }`}>
-                    {loading && <p className='text-white'>Loading...</p>}
-                    {error && <p className='text-white'>Error : {error.message}</p>}
-                    <Cell name="1" color="cyan">cyan</Cell>
-                    <Cell name="2" color="cyan">cyan</Cell>
-                    <Cell name="3" color="cyan">cyan</Cell>
-                    <Cell name="4" color="cyan">cyan</Cell>
-                    <Cell name="5" color="sky">sky</Cell>
-                    <Cell name="6" color="blue">blue</Cell>
-                    <Cell name="7" color="indigo">indigo</Cell>
-                    <Cell name="8" color="pink">pink</Cell>
-                    <Cell name="9" color="rose">rose</Cell>
-                </div>
-            </div> */}
 
             <div className={`w-full h-full scrollbar snap-both ${displayType
                 ? "overflow-x-scroll"
                 : "overflow-y-scroll"
                 }`}>
-                <div className={`min-w-full w-max min-h-full h-max flex py-3 ${displayType
+                <div className={`min-w-full w-max min-h-full h-max flex pt-3 ${displayType
                     ? "flex-row"
-                    : "flex-col"
+                    : "flex-col pr-3"
                     }`}>
-                    <Cell name="1" color="cyan">cyan</Cell>
-                    <Cell name="2" color="sky">sky</Cell>
-                    <Cell name="3" color="blue">blue</Cell>
-                    <Cell name="4" color="indigo">indigo</Cell>
-                    <Cell name="5" color="pink">pink</Cell>
-                    <Cell name="6" color="rose">rose</Cell>
-                    <Cell name="6" color="rose">rose</Cell>
-                    <Cell name="6" color="rose">rose</Cell>
-                    <Cell name="6" color="rose">rose</Cell>
+                    {loading && <p className='text-white'>Loading...</p>}
+                    {error && <p className='text-white'>Error : {error.message}</p>}
+                    <Cell name="1" color="cyan" items={[
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }
+                    ]} />
+                    <Cell name="1" color="cyan" items={[
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }, 
+                        { name: "Test", text: "Text" }
+                    ]} />
                 </div>
             </div>
             {/* <Pagination amount={7} /> */}
