@@ -18,8 +18,8 @@ const toastTransition = cssTransition({
 });
 
 import NotificationStore from "../store/notifications";
-import GPHTEST from '../components/gphtest';
 import Guest from "./guest";
+import Projects from './projects/index';
 
 export default function App({ countries }: any) {
     const [addNotification] = NotificationStore((state) => [state.addNotification]);
@@ -72,10 +72,9 @@ export default function App({ countries }: any) {
                     closeButton={false}
                     toastClassName={"border border-neutral-800"}
                     theme="dark"
-                />
+                /> */}
                 <Nav />
-                <GPHTEST/> */}
-                <Guest />
+                <Projects />
 
             </div>
         </>
