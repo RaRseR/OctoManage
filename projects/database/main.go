@@ -3,6 +3,7 @@ package database
 import (
 	"context"
 	"fmt"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -29,4 +30,11 @@ func GetDatabase() (*mongo.Client, error) {
 	}
 
 	return nil, err
+}
+
+func GetID(result *mongo.InsertOneResult) (string, error) {
+	if oid, ok := result.InsertedID.(primitive.ObjectID); ok {
+		return oid.Hex(), nil
+	}
+	return "", nil
 }

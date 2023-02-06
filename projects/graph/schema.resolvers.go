@@ -8,8 +8,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/RaRseR/OctoManage/Projects/database"
-	"log"
-
 	"github.com/RaRseR/OctoManage/Projects/graph/model"
 )
 
@@ -17,26 +15,28 @@ import (
 func (r *mutationResolver) CreateProject(ctx context.Context, input model.ProjectInput) (*model.Project, error) {
 	client, err := database.GetDatabase()
 	if err != nil {
-		log.Println("Unable to connect to database", err)
-		return nil, err
+		panic(err)
 	}
-
 	defer func() {
 		if err := client.Disconnect(context.TODO()); err != nil {
-			log.Println(err)
+			panic(err)
 		}
 	}()
 
-	coll := client.Database("projects").Collection("projects")
+	coll := client.Database("job").Collection("projects")
 
-	fmt.Println("input", input.Name, input.Text)
-	project := model.Project{Name: input.Name, Text: input.Text}
+	project := model.Project{
+		Name: input.Name,
+		Text: input.Text,
+	}
 
-	if _, err := coll.InsertOne(context.TODO(), &project); err != nil {
-		return nil, err
+	if result, err := coll.InsertOne(context.TODO(), &project); err != nil {
+		panic(err)
 	} else {
+		project.ID, err = database.GetID(result)
 		return &project, nil
 	}
+
 }
 
 // CreateTask is the resolver for the createTask field.
