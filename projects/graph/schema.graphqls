@@ -1,18 +1,49 @@
+type Status{
+ id: String!
+ name: String!
+ projects: [Project]
+}
+
 type Project{
  id: String!
  name: String!
  text: String!
- created: String!
+ team_ids: [String]
+ teams: [Team]
+ executor_ids: [String]
+ executors: [Executor]
+ chat: String
+ created_at: String!
+ completed_at: String!
+ deadline: String!
  tasks: [Task]
 }
 
 type Task{
  id: String!
- project: Project!
- project_id: String!
  name: String!
  text: String!
- created: String!
+ project: Project!
+ team_ids: [String]
+ teams: [Team]
+ executor_ids: [String]
+ executors: [Executor]
+ chat: String
+ created_at: String!
+ completed_at: String!
+ deadline: String!
+}
+
+type Team{
+ id: String!
+ name: String!
+ executor_ids: [String]
+ executors: [Executor]
+}
+
+type Executor{
+ id: String!
+ name: String!
 }
 
 type Query {
@@ -20,18 +51,35 @@ type Query {
  tasks: [Task]!
 }
 
-input ProjectInput {
+input CreateProjectInput {
  name: String!
  text: String!
 }
 
-input TaskInput {
+input CreateTaskInput {
  project_id: String!
  name: String!
  text: String!
 }
 
+input UpdateProjectInput {
+ name: String!
+ text: String!
+ teams: [String]
+ users: [String]
+ chat: String
+ completed_at: String!
+ deadline: String!
+}
+
+input UpdateTaskInput {
+ name: String!
+ text: String!
+}
+
 type Mutation {
- createProject(input: ProjectInput!): Project!
- createTask(input: TaskInput): Task!
+ createProject(input: CreateProjectInput!): Project!
+ createTask(input: CreateTaskInput): Task!
+ updateProject(input: UpdateProjectInput): Project!
+ updateTask(input: UpdateTaskInput): Task!
 }
